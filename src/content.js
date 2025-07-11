@@ -1,8 +1,6 @@
 // Content script to handle text processing
 let lastFocusedElement = null;
 
-import { BASE_BACKEND } from "./config.js";
-
 // Track focused editable elements
 document.addEventListener('focusin', (event) => {
   const element = event.target;
@@ -58,7 +56,7 @@ function handleAIRequest(action) {
   // Make API call
   const endpoint = action === "fix-with-ai" ? "/fix-text" : "/rewrite-text";
   
-  fetch(`${BASE_BACKEND}${endpoint}`, {
+  fetch(`${window.BASE_BACKEND}${endpoint}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
